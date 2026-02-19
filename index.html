@@ -5,8 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-
-	<title>For you, Arastu: From idea to final project</title>
+	<title>Arastu: From Collisions to Conclusions</title>
 
 	<link rel="stylesheet" href="reveal.js/dist/reset.css">
 	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -17,115 +16,201 @@
 </head>
 
 <body>
-	
+
 	<!-- Begin slides -->
 	<div class="reveal" style="width: 100%; height: 85vh; margin: 10px 0;">
 		<div class="slides">
+
+			<!-- Title -->
 			<section>
-				<h2>
-					Hi Arastu
-				</h2>
-				<h3>Stavrina Dimosthenous</h3>
-				<h3>2026-02-19</h3>
+				<h2>From Collisions to Conclusions</h2>
+				<h3>Arastu's Guide to Data Management in Particle Physics</h3>
+				<p style="margin-top: 1em;"><i class="fa-solid fa-atom"></i> &nbsp; 2026-02-19</p>
 			</section>
+
+			<!-- Who is Arastu -->
 			<section>
-				<h3>Today</h3>
+				<h3>Meet Arastu</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						Arastu is a particle physicist working on high-energy collision experiments.
+					</p>
+					<p class="fragment fade-in-then-out">
+						His day job: hunt for new particles hiding in billions of collision events.
+					</p>
+					<p class="fragment fade-in-then-out">
+						His tools: detectors the size of cathedrals, supercomputers, and a <strong>very good terminal</strong>.
+					</p>
+				</div>
+			</section>
+
+			<!-- The data problem -->
+			<section>
+				<h3>The Scale of the Problem</h3>
 				<ul>
-					<li class="fragment">Gauge our collective familiarity</li>
-					<li class="fragment">Setup our systems</li>
+					<li class="fragment">The LHC produces ~<strong>1 petabyte</strong> of data per second at collision</li>
+					<li class="fragment">After filtering: ~<strong>15 petabytes</strong> stored per year</li>
+					<li class="fragment">Arastu's analysis alone touches <strong>millions of events</strong></li>
+					<li class="fragment">You cannot manage this with a mouse and folders named <code>final_v3_REAL_final.csv</code></li>
+				</ul>
+			</section>
+
+			<!-- Today's agenda -->
+			<section>
+				<h3>What Arastu Will Learn Today</h3>
+				<ul>
 					<li class="fragment">Practical workshop (AM)
 						<ul>
-							<li class="fragment">Bash</li>
-							<li class="fragment">Git</li>
-							<li class="fragment">Remotes on GitHub</li>
+							<li class="fragment">The Unix Shell — his gateway to remote clusters</li>
+							<li class="fragment">Git — version control for his analysis code</li>
+							<li class="fragment">GitHub — collaborating with his experiment's team</li>
 						</ul>
 					</li>
 					<li class="fragment">Practical workshop (PM)
 						<ul>
-							<li class="fragment">Tidy data</li>
-							<li class="fragment">Setting up VSCode for Python</li>
+							<li class="fragment">Tidy data — structuring particle event tables</li>
+							<li class="fragment">Python in VSCode — for analysis and plotting</li>
 						</ul>
 					</li>
 				</ul>
 			</section>
-			<section>
-				<h3>Gauge</h3>
-				<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alwwdtu1v93dpvkf2ofwm3jvovc8eccu/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
-			</section>
-			<section>
-				<h3>What is the UNIX Shell?</h3>
-				<div class="r-stack">
-					<p class="fragment fade-in-then-out">It is a command-line interpreter that lets the user communicate
-						with some of the operating system's services</p>
-					<p class="fragment fade-in-then-out">console vs. terminal vs. shell vs. command-line interface</p>
-					<p class="fragment fade-in-then-out">We might be using these terms interchangeably!</p>
-				</div>
-			</section>
-			<section>
-				<h3>How important is the command line?</h3>
-				<div class="r-stack fade-out">
-					<p class="fragment fade-in-then-out">
-						It depends
-					</p>
-					<p class="fragment fade-in-then-out semi-fade-out">
-						Here's what you can do if you're comfortable with using a command line
-					</p>
-				</div>
-				<div class="r-stack" style="display: flex-box; max-height: fit-content; height: min-content;">
-					<img class="fragment fade-up fade-in-then-out" src="images/cmd-shutdown.gif"
-						alt="A gif animation showing the function of the shutdown command on the windows command line">
-					<p class="fragment fade-up fade-in-then-out">
-						Some software is easier to use once you get more comfortable with the terminal
-					</p>
-					<p class="fragment fade-in-then-out">
-						A lot of free open-source (scientific) software (FOSS) is usually written to be ran from the
-						command line
-					</p>
-					<p class="fragment fade-in-then-out">
-						Getting comfortable with the command line might open you up to a world of useful software for
-						your research
-					</p>
-				</div>
-			</section>
-			<section>
-				<h3>What are some software that run on the command line?</h3>
 
+			<!-- Unix Shell -->
+			<section>
+				<h3>The Unix Shell — Arastu's Best Friend</h3>
 				<div class="r-stack">
-					<img class="fragment fade-up" style="max-height: 500px;" src="images/terminal_opencalphad_example.jpg" alt="An image showing the landing webpage of OpenCalphad, an open-source programme">
+					<p class="fragment fade-in-then-out">
+						A command-line interpreter that lets you talk directly to the operating system.
+					</p>
+					<p class="fragment fade-in-then-out">
+						CERN's computing clusters (lxplus) run Linux. <strong>There is no GUI.</strong>
+					</p>
+					<p class="fragment fade-in-then-out">
+						To run his simulation, Arastu types:<br>
+						<code>./run_simulation.sh --events 1000000 --energy 13TeV</code>
+					</p>
+					<p class="fragment fade-in-then-out">
+						Without the shell, Arastu cannot submit jobs, move data, or run anything at scale.
+					</p>
 				</div>
+			</section>
 
-			</section>
+			<!-- Physics software on the CLI -->
 			<section>
-				<h3>
-					What is version control?
-				</h3>
+				<h3>Physics Software Lives on the Command Line</h3>
+				<ul>
+					<li class="fragment"><strong>ROOT</strong> — CERN's data analysis framework</li>
+					<li class="fragment"><strong>Geant4</strong> — particle detector simulations</li>
+					<li class="fragment"><strong>MadGraph</strong> — event generators for new physics models</li>
+					<li class="fragment"><strong>HTCondor / Slurm</strong> — cluster job schedulers</li>
+					<li class="fragment">All of them: terminal only.</li>
+				</ul>
 			</section>
+
+			<!-- Version control intro -->
 			<section>
-				<h3>
-					Why is version control important?
-				</h3>
-				<div class="r-stack fade-in-then-out">
-					<img class="fragment fade-in-then-out" style="max-height: 400px;" src="images/file_versions.png"
-						alt="An image displaying a windows folder with several files of the same base name with slight version variations. This is done to demonstrate how version control is important and keeps things tidy.">
-					<img class="fragment fade-up fade-in-then-out" style="max-height:500px;"
-						src="images/latex_paper_commented.png"
-						alt="An image showing a latex source file with several areas commented out.">
+				<h3>What is Version Control?</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						A system that records changes to files over time so you can recall specific versions later.
+					</p>
+					<p class="fragment fade-in-then-out">
+						Think of it as an unlimited, labelled undo history — for your entire project.
+					</p>
+					<p class="fragment fade-in-then-out">
+						<strong>Git</strong> is the most widely used version control system in the world.
+					</p>
 				</div>
 			</section>
+
+			<!-- Why version control matters for Arastu -->
 			<section>
-				<h3>
-					Is Git an important skill?
-				</h3>
+				<h3>Why Arastu Needs Version Control</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						Last Tuesday, Arastu's energy cut was <code>pT &gt; 25 GeV</code>.<br>
+						Today it's <code>pT &gt; 30 GeV</code>.<br>
+						His plot changed. <strong>Which result does he report?</strong>
+					</p>
+					<p class="fragment fade-in-then-out">
+						Without version control: chaos, commented-out code, files like
+						<code>analysis_v7_corrected_FINAL2.py</code>
+					</p>
+					<p class="fragment fade-in-then-out">
+						With Git: every change is logged, labelled, and reversible.
+					</p>
+					<img class="fragment fade-up" style="max-height: 380px;" src="images/file_versions.png"
+						alt="A folder full of files named with version suffixes, illustrating the chaos without version control.">
+				</div>
 			</section>
+
+			<!-- Git is critical -->
 			<section>
-				<h3>What will we be doing in this module?</h3>
-				<h6>We will learn:</h6>
+				<h3>Is Git an Important Skill?</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						ATLAS and CMS — the two largest LHC experiments — both manage their software on Git and GitLab.
+					</p>
+					<p class="fragment fade-in-then-out">
+						Arastu's analysis framework has <strong>thousands of contributors</strong> across dozens of countries.
+					</p>
+					<p class="fragment fade-in-then-out">
+						Without Git, coordinating that collaboration would be impossible.
+					</p>
+					<p class="fragment fade-in-then-out">
+						<strong>Yes. It is essential.</strong>
+					</p>
+				</div>
+			</section>
+
+			<!-- Tidy data -->
+			<section>
+				<h3>Tidy Data in Particle Physics</h3>
+				<ul>
+					<li class="fragment">Each row = one collision event</li>
+					<li class="fragment">Each column = one variable (<code>pT</code>, <code>eta</code>, <code>phi</code>, <code>mass</code>, <code>label</code>)</li>
+					<li class="fragment">Consistent types — no mixing strings and floats in the same column</li>
+					<li class="fragment">Tidy data makes Arastu's Python analysis reproducible and shareable</li>
+				</ul>
+			</section>
+
+			<!-- Python -->
+			<section>
+				<h3>Python — Arastu's Analysis Language</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						Python + <strong>uproot</strong> reads ROOT files directly — no C++ required.
+					</p>
+					<p class="fragment fade-in-then-out">
+						<strong>awkward-array</strong> handles jagged event data elegantly.
+					</p>
+					<p class="fragment fade-in-then-out">
+						<strong>matplotlib / mplhep</strong> produces publication-quality physics plots.
+					</p>
+					<p class="fragment fade-in-then-out">
+						VSCode gives Arastu linting, Git integration, and Jupyter notebooks — all in one place.
+					</p>
+				</div>
+			</section>
+
+			<!-- What we will do -->
+			<section>
+				<h3>What Arastu Will Master</h3>
 				<ol type="1">
-					<li>how to use the Unix Shell aka command line (online learning)</li>
-					<li>how to use Git for (Software) Version Control (practical)</li>
-					<li>how to write collaboratively on GitHub (practical)</li>
+					<li class="fragment">Navigate CERN's clusters using the <strong>Unix Shell</strong></li>
+					<li class="fragment">Track every change to his analysis with <strong>Git</strong></li>
+					<li class="fragment">Collaborate with his team using <strong>GitHub</strong></li>
+					<li class="fragment">Structure his event data as <strong>tidy tables</strong></li>
+					<li class="fragment">Analyse and plot results in <strong>Python</strong></li>
 				</ol>
 			</section>
+
+			<!-- Closing -->
+			<section>
+				<h2>Let's find some new physics.</h2>
+				<p class="fragment"><i class="fa-solid fa-atom fa-spin"></i></p>
+			</section>
+
 		</div>
 	</div>
 
@@ -135,16 +220,12 @@
 	<script src="reveal.js/plugin/highlight/highlight.js"></script>
 	<script src="reveal.js/plugin/search/search.js"></script>
 	<script>
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
 		Reveal.initialize({
 			hash: true,
 			controls: true,
 			controlsLayout: 'bottom-right',
 			controlsBackArrows: 'faded',
-			progress: false,
-			// Learn about plugins: https://revealjs.com/plugins/
+			progress: true,
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch]
 		});
 	</script>
