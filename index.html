@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>From idea to final project</title>
+
+	<link rel="stylesheet" href="reveal.js/dist/reset.css">
+	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="reveal.js/dist/theme/solarized.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
+</head>
+
+<body>
+	
+	<!-- Begin slides -->
+	<div class="reveal" style="width: 100%; height: 85vh; margin: 10px 0;">
+		<div class="slides">
+			<section>
+				<h2>
+					Data management, version control and you
+				</h2>
+				<h3>Stavrina Dimosthenous</h3>
+				<h3>2026-02-19</h3>
+			</section>
+			<section>
+				<h3>Today</h3>
+				<ul>
+					<li class="fragment">Gauge our collective familiarity</li>
+					<li class="fragment">Setup our systems</li>
+					<li class="fragment">Practical workshop (AM)
+						<ul>
+							<li class="fragment">Bash</li>
+							<li class="fragment">Git</li>
+							<li class="fragment">Remotes on GitHub</li>
+						</ul>
+					</li>
+					<li class="fragment">Practical workshop (PM)
+						<ul>
+							<li class="fragment">Tidy data</li>
+							<li class="fragment">Setting up VSCode for Python</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Gauge</h3>
+				<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/alwwdtu1v93dpvkf2ofwm3jvovc8eccu/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
+			</section>
+			<section>
+				<h3>What is the UNIX Shell?</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">It is a command-line interpreter that lets the user communicate
+						with some of the operating system's services</p>
+					<p class="fragment fade-in-then-out">console vs. terminal vs. shell vs. command-line interface</p>
+					<p class="fragment fade-in-then-out">We might be using these terms interchangeably!</p>
+				</div>
+			</section>
+			<section>
+				<h3>How important is the command line?</h3>
+				<div class="r-stack fade-out">
+					<p class="fragment fade-in-then-out">
+						It depends
+					</p>
+					<p class="fragment fade-in-then-out semi-fade-out">
+						Here's what you can do if you're comfortable with using a command line
+					</p>
+				</div>
+				<div class="r-stack" style="display: flex-box; max-height: fit-content; height: min-content;">
+					<img class="fragment fade-up fade-in-then-out" src="images/cmd-shutdown.gif"
+						alt="A gif animation showing the function of the shutdown command on the windows command line">
+					<p class="fragment fade-up fade-in-then-out">
+						Some software is easier to use once you get more comfortable with the terminal
+					</p>
+					<p class="fragment fade-in-then-out">
+						A lot of free open-source (scientific) software (FOSS) is usually written to be ran from the
+						command line
+					</p>
+					<p class="fragment fade-in-then-out">
+						Getting comfortable with the command line might open you up to a world of useful software for
+						your research
+					</p>
+				</div>
+			</section>
+			<section>
+				<h3>What are some software that run on the command line?</h3>
+
+				<div class="r-stack">
+					<img class="fragment fade-up" style="max-height: 500px;" src="images/terminal_opencalphad_example.jpg" alt="An image showing the landing webpage of OpenCalphad, an open-source programme">
+				</div>
+
+			</section>
+			<section>
+				<h3>
+					What is version control?
+				</h3>
+			</section>
+			<section>
+				<h3>
+					Why is version control important?
+				</h3>
+				<div class="r-stack fade-in-then-out">
+					<img class="fragment fade-in-then-out" style="max-height: 400px;" src="images/file_versions.png"
+						alt="An image displaying a windows folder with several files of the same base name with slight version variations. This is done to demonstrate how version control is important and keeps things tidy.">
+					<img class="fragment fade-up fade-in-then-out" style="max-height:500px;"
+						src="images/latex_paper_commented.png"
+						alt="An image showing a latex source file with several areas commented out.">
+				</div>
+			</section>
+			<section>
+				<h3>
+					Is Git an important skill?
+				</h3>
+			</section>
+			<section>
+				<h3>What will we be doing in this module?</h3>
+				<h6>We will learn:</h6>
+				<ol type="1">
+					<li>how to use the Unix Shell aka command line (online learning)</li>
+					<li>how to use Git for (Software) Version Control (practical)</li>
+					<li>how to write collaboratively on GitHub (practical)</li>
+				</ol>
+			</section>
+		</div>
+	</div>
+
+	<script src="reveal.js/dist/reveal.js"></script>
+	<script src="reveal.js/plugin/notes/notes.js"></script>
+	<script src="reveal.js/plugin/markdown/markdown.js"></script>
+	<script src="reveal.js/plugin/highlight/highlight.js"></script>
+	<script src="reveal.js/plugin/search/search.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			controls: true,
+			controlsLayout: 'bottom-right',
+			controlsBackArrows: 'faded',
+			progress: false,
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch]
+		});
+	</script>
+</body>
+
+</html>
