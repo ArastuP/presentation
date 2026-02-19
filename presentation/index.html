@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Arastu: From Collisions to Conclusions</title>
+	<title>Arastu: From B Mesons to Breakthroughs</title>
 
 	<link rel="stylesheet" href="reveal.js/dist/reset.css">
 	<link rel="stylesheet" href="reveal.js/dist/reveal.css">
@@ -23,8 +23,8 @@
 
 			<!-- Title -->
 			<section>
-				<h2>From Collisions to Conclusions</h2>
-				<h3>Arastu's Guide to Data Management in Particle Physics</h3>
+				<h2>From B Mesons to Breakthroughs</h2>
+				<h3>Arastu's Guide to Data Management at Belle II</h3>
 				<p style="margin-top: 1em;"><i class="fa-solid fa-atom"></i> &nbsp; 2026-02-19</p>
 			</section>
 
@@ -33,25 +33,44 @@
 				<h3>Meet Arastu</h3>
 				<div class="r-stack">
 					<p class="fragment fade-in-then-out">
-						Arastu is a particle physicist working on high-energy collision experiments.
+						Arastu is a particle physicist on the <strong>Belle II experiment</strong> at KEK, Tsukuba, Japan.
 					</p>
 					<p class="fragment fade-in-then-out">
-						His day job: hunt for new particles hiding in billions of collision events.
+						His goal: probe the <strong>flavour sector</strong> of the Standard Model — and find cracks in it.
 					</p>
 					<p class="fragment fade-in-then-out">
-						His tools: detectors the size of cathedrals, supercomputers, and a <strong>very good terminal</strong>.
+						His tools: the SuperKEKB collider, the basf2 framework, and a <strong>very good terminal</strong>.
 					</p>
 				</div>
 			</section>
 
+			<!-- What is Belle II -->
+			<section>
+				<h3>What is Belle II?</h3>
+				<ul>
+					<li class="fragment">An <strong>electron–positron</strong> collider experiment at KEK in Japan</li>
+					<li class="fragment">Runs at the <strong>Υ(4S)</strong> resonance — a factory for B meson pairs</li>
+					<li class="fragment">~<strong>1,000 physicists</strong> from 26 countries</li>
+					<li class="fragment">Physics targets:
+						<ul>
+							<li class="fragment">CP violation in B decays</li>
+							<li class="fragment">Rare decays: B → K<sup>(*)</sup>νν̄, B → τν</li>
+							<li class="fragment">Lepton flavour universality tests: R(D<sup>(*)</sup>)</li>
+							<li class="fragment">Dark sector &amp; dark photon searches</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
 			<!-- The data problem -->
 			<section>
-				<h3>The Scale of the Problem</h3>
+				<h3>The Scale of the Data</h3>
 				<ul>
-					<li class="fragment">The LHC produces ~<strong>1 petabyte</strong> of data per second at collision</li>
-					<li class="fragment">After filtering: ~<strong>15 petabytes</strong> stored per year</li>
-					<li class="fragment">Arastu's analysis alone touches <strong>millions of events</strong></li>
-					<li class="fragment">You cannot manage this with a mouse and folders named <code>final_v3_REAL_final.csv</code></li>
+					<li class="fragment">SuperKEKB targets a luminosity of <strong>6 × 10<sup>35</sup> cm<sup>−2</sup>s<sup>−1</sup></strong> — the world record</li>
+					<li class="fragment">Belle II aims to collect <strong>50 ab<sup>−1</sup></strong> of data</li>
+					<li class="fragment">Each collision produces hundreds of detector hits to reconstruct</li>
+					<li class="fragment">Arastu's signal channel may appear in <strong>1 in 10 million</strong> events</li>
+					<li class="fragment">You cannot manage this with folders named <code>analysis_FINAL_v3.root</code></li>
 				</ul>
 			</section>
 
@@ -61,15 +80,15 @@
 				<ul>
 					<li class="fragment">Practical workshop (AM)
 						<ul>
-							<li class="fragment">The Unix Shell — his gateway to remote clusters</li>
-							<li class="fragment">Git — version control for his analysis code</li>
-							<li class="fragment">GitHub — collaborating with his experiment's team</li>
+							<li class="fragment">The Unix Shell — his gateway to KEK's computing grid</li>
+							<li class="fragment">Git — version control for his basf2 steering files</li>
+							<li class="fragment">GitHub / GitLab — collaborating with the Belle II software team</li>
 						</ul>
 					</li>
 					<li class="fragment">Practical workshop (PM)
 						<ul>
-							<li class="fragment">Tidy data — structuring particle event tables</li>
-							<li class="fragment">Python in VSCode — for analysis and plotting</li>
+							<li class="fragment">Tidy data — structuring B decay candidate tables</li>
+							<li class="fragment">Python in VSCode — for analysis and publication plots</li>
 						</ul>
 					</li>
 				</ul>
@@ -77,32 +96,32 @@
 
 			<!-- Unix Shell -->
 			<section>
-				<h3>The Unix Shell — Arastu's Best Friend</h3>
+				<h3>The Unix Shell — Arastu's Gateway</h3>
 				<div class="r-stack">
 					<p class="fragment fade-in-then-out">
 						A command-line interpreter that lets you talk directly to the operating system.
 					</p>
 					<p class="fragment fade-in-then-out">
-						CERN's computing clusters (lxplus) run Linux. <strong>There is no GUI.</strong>
+						KEK's computing farm runs Linux. <strong>There is no GUI.</strong>
 					</p>
 					<p class="fragment fade-in-then-out">
-						To run his simulation, Arastu types:<br>
-						<code>./run_simulation.sh --events 1000000 --energy 13TeV</code>
+						To submit his reconstruction jobs, Arastu types:<br><br>
+						<code>bsub -q l -e err.log basf2 reconstruct.py</code>
 					</p>
 					<p class="fragment fade-in-then-out">
-						Without the shell, Arastu cannot submit jobs, move data, or run anything at scale.
+						Without the shell, Arastu cannot run basf2, submit grid jobs, or process a single event at scale.
 					</p>
 				</div>
 			</section>
 
-			<!-- Physics software on the CLI -->
+			<!-- Belle II software -->
 			<section>
-				<h3>Physics Software Lives on the Command Line</h3>
+				<h3>Belle II Software Lives on the Command Line</h3>
 				<ul>
-					<li class="fragment"><strong>ROOT</strong> — CERN's data analysis framework</li>
-					<li class="fragment"><strong>Geant4</strong> — particle detector simulations</li>
-					<li class="fragment"><strong>MadGraph</strong> — event generators for new physics models</li>
-					<li class="fragment"><strong>HTCondor / Slurm</strong> — cluster job schedulers</li>
+					<li class="fragment"><strong>basf2</strong> — the Belle II Analysis Software Framework (C++ core, Python steering)</li>
+					<li class="fragment"><strong>ROOT</strong> — histogramming, ntuples, and RDataFrame analysis</li>
+					<li class="fragment"><strong>EvtGen / PYTHIA</strong> — Monte Carlo event generators</li>
+					<li class="fragment"><strong>DIRAC / gbasf2</strong> — distributed grid job submission</li>
 					<li class="fragment">All of them: terminal only.</li>
 				</ul>
 			</section>
@@ -112,7 +131,7 @@
 				<h3>What is Version Control?</h3>
 				<div class="r-stack">
 					<p class="fragment fade-in-then-out">
-						A system that records changes to files over time so you can recall specific versions later.
+						A system that records changes to files over time so you can recall any version later.
 					</p>
 					<p class="fragment fade-in-then-out">
 						Think of it as an unlimited, labelled undo history — for your entire project.
@@ -128,34 +147,34 @@
 				<h3>Why Arastu Needs Version Control</h3>
 				<div class="r-stack">
 					<p class="fragment fade-in-then-out">
-						Last Tuesday, Arastu's energy cut was <code>pT &gt; 25 GeV</code>.<br>
-						Today it's <code>pT &gt; 30 GeV</code>.<br>
-						His plot changed. <strong>Which result does he report?</strong>
+						Last week, Arastu's B candidate mass window was <code>[5.20, 5.30] GeV/c²</code>.<br>
+						Today it is <code>[5.24, 5.29] GeV/c²</code>.<br>
+						His signal yield changed. <strong>Which result goes in the paper?</strong>
 					</p>
 					<p class="fragment fade-in-then-out">
-						Without version control: chaos, commented-out code, files like
-						<code>analysis_v7_corrected_FINAL2.py</code>
+						Without version control: commented-out cuts, files like
+						<code>steering_tight_cuts_v7_FINAL2.py</code>
 					</p>
 					<p class="fragment fade-in-then-out">
-						With Git: every change is logged, labelled, and reversible.
+						With Git: every change is logged with a message, a timestamp, and an author.
 					</p>
-					<img class="fragment fade-up" style="max-height: 380px;" src="images/file_versions.png"
+					<img class="fragment fade-up" style="max-height: 350px;" src="images/file_versions.png"
 						alt="A folder full of files named with version suffixes, illustrating the chaos without version control.">
 				</div>
 			</section>
 
 			<!-- Git is critical -->
 			<section>
-				<h3>Is Git an Important Skill?</h3>
+				<h3>Is Git Essential for Belle II?</h3>
 				<div class="r-stack">
 					<p class="fragment fade-in-then-out">
-						ATLAS and CMS — the two largest LHC experiments — both manage their software on Git and GitLab.
+						The entire <strong>basf2</strong> codebase is managed on GitLab at DESY.
 					</p>
 					<p class="fragment fade-in-then-out">
-						Arastu's analysis framework has <strong>thousands of contributors</strong> across dozens of countries.
+						Analysis groups maintain their own Git repositories for steering files, ntuples, and paper code.
 					</p>
 					<p class="fragment fade-in-then-out">
-						Without Git, coordinating that collaboration would be impossible.
+						Belle II's software review process requires merge requests — which means Git.
 					</p>
 					<p class="fragment fade-in-then-out">
 						<strong>Yes. It is essential.</strong>
@@ -165,12 +184,14 @@
 
 			<!-- Tidy data -->
 			<section>
-				<h3>Tidy Data in Particle Physics</h3>
+				<h3>Tidy Data in a B Physics Analysis</h3>
 				<ul>
-					<li class="fragment">Each row = one collision event</li>
-					<li class="fragment">Each column = one variable (<code>pT</code>, <code>eta</code>, <code>phi</code>, <code>mass</code>, <code>label</code>)</li>
-					<li class="fragment">Consistent types — no mixing strings and floats in the same column</li>
-					<li class="fragment">Tidy data makes Arastu's Python analysis reproducible and shareable</li>
+					<li class="fragment">Each row = one B meson candidate</li>
+					<li class="fragment">Each column = one variable:
+						<code>Mbc</code>, <code>deltaE</code>, <code>p_cms</code>, <code>isSignal</code>
+					</li>
+					<li class="fragment">Consistent types — no mixed strings and floats in the same column</li>
+					<li class="fragment">Tidy ntuples make Arastu's fits reproducible and shareable with collaborators</li>
 				</ul>
 			</section>
 
@@ -179,16 +200,19 @@
 				<h3>Python — Arastu's Analysis Language</h3>
 				<div class="r-stack">
 					<p class="fragment fade-in-then-out">
-						Python + <strong>uproot</strong> reads ROOT files directly — no C++ required.
+						<strong>basf2</strong> steering scripts are written in Python — analysis starts here.
 					</p>
 					<p class="fragment fade-in-then-out">
-						<strong>awkward-array</strong> handles jagged event data elegantly.
+						<strong>uproot + awkward-array</strong> reads ROOT ntuples without needing C++.
 					</p>
 					<p class="fragment fade-in-then-out">
-						<strong>matplotlib / mplhep</strong> produces publication-quality physics plots.
+						<strong>zfit</strong> performs unbinned maximum-likelihood fits to the Mbc distribution.
 					</p>
 					<p class="fragment fade-in-then-out">
-						VSCode gives Arastu linting, Git integration, and Jupyter notebooks — all in one place.
+						<strong>matplotlib / mplhep</strong> produces publication-quality Belle II plots.
+					</p>
+					<p class="fragment fade-in-then-out">
+						VSCode brings linting, Git integration, and Jupyter notebooks — all in one place.
 					</p>
 				</div>
 			</section>
@@ -197,18 +221,19 @@
 			<section>
 				<h3>What Arastu Will Master</h3>
 				<ol type="1">
-					<li class="fragment">Navigate CERN's clusters using the <strong>Unix Shell</strong></li>
-					<li class="fragment">Track every change to his analysis with <strong>Git</strong></li>
-					<li class="fragment">Collaborate with his team using <strong>GitHub</strong></li>
-					<li class="fragment">Structure his event data as <strong>tidy tables</strong></li>
-					<li class="fragment">Analyse and plot results in <strong>Python</strong></li>
+					<li class="fragment">Navigate KEK's computing farm using the <strong>Unix Shell</strong></li>
+					<li class="fragment">Track every change to his steering files with <strong>Git</strong></li>
+					<li class="fragment">Collaborate with the Belle II software team on <strong>GitLab / GitHub</strong></li>
+					<li class="fragment">Structure his B candidate ntuples as <strong>tidy tables</strong></li>
+					<li class="fragment">Fit, analyse, and plot results in <strong>Python</strong></li>
 				</ol>
 			</section>
 
 			<!-- Closing -->
 			<section>
 				<h2>Let's find some new physics.</h2>
-				<p class="fragment"><i class="fa-solid fa-atom fa-spin"></i></p>
+				<p style="margin-top: 0.5em;">B → K<sup>(*)</sup>νν̄ won't measure itself.</p>
+				<p class="fragment" style="margin-top: 1em;"><i class="fa-solid fa-atom fa-spin"></i></p>
 			</section>
 
 		</div>
