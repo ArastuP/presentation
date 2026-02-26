@@ -1,0 +1,900 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Arastu: From B Mesons to Breakthroughs</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/solarized.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/monokai.min.css">
+
+	<style>
+		/* ── Section dividers ── */
+		.section-divider {
+			background: #073642 !important;
+			color: #eee8d5 !important;
+		}
+		.section-divider h2, .section-divider h3 {
+			color: #93a1a1 !important;
+		}
+
+		/* ── Tag / pill badges ── */
+		.tag {
+			display: inline-block;
+			background: #2aa198;
+			color: #fff;
+			border-radius: 4px;
+			padding: 2px 10px;
+			font-size: 0.7em;
+			margin: 2px 4px;
+			vertical-align: middle;
+		}
+		.tag.red   { background: #dc322f; }
+		.tag.blue  { background: #268bd2; }
+		.tag.green { background: #859900; }
+		.tag.orange{ background: #cb4b16; }
+
+		/* ── Two-column helper ── */
+		.cols { display: flex; gap: 2em; align-items: flex-start; }
+		.cols .col { flex: 1; }
+
+		/* ── Small code blocks ── */
+		.mini-code {
+			background: #073642;
+			color: #93a1a1;
+			border-radius: 6px;
+			padding: 0.6em 1em;
+			font-family: monospace;
+			font-size: 0.72em;
+			text-align: left;
+			margin-top: 0.5em;
+			white-space: pre;
+		}
+
+		/* ── Highlight box ── */
+		.highlight-box {
+			border: 2px solid #2aa198;
+			border-radius: 8px;
+			padding: 0.5em 1em;
+			margin: 0.4em 0;
+			font-size: 0.85em;
+		}
+		.highlight-box.warn { border-color: #dc322f; }
+		.highlight-box.info { border-color: #268bd2; }
+
+		/* ── Emoji bullet list ── */
+		.emoji-list { list-style: none; padding: 0; }
+		.emoji-list li { margin: 0.3em 0; }
+
+		/* ── Flow arrow ── */
+		.flow {
+			display: flex;
+			align-items: center;
+			gap: 0.4em;
+			flex-wrap: wrap;
+			justify-content: center;
+			font-size: 0.8em;
+		}
+		.flow .box {
+			background: #eee8d5;
+			border: 1px solid #839496;
+			border-radius: 6px;
+			padding: 0.3em 0.7em;
+		}
+		.flow .arrow { color: #2aa198; font-size: 1.3em; }
+
+		/* make reveal slides a bit wider by default */
+		.reveal .slides { font-size: 0.9em; }
+	</style>
+</head>
+
+<body>
+
+	<div class="reveal">
+		<div class="slides">
+
+			<!-- ═══════════════════════════════════════════════════════
+			     PART 1 – ORIGINAL BELLE II SLIDES
+			═══════════════════════════════════════════════════════ -->
+
+			<!-- Title -->
+			<section>
+				<h2>From B Mesons to Breakthroughs</h2>
+				<h3>Arastu's Guide to Data Management at Belle II</h3>
+				<p style="margin-top: 1em;"><i class="fa-solid fa-atom"></i> &nbsp; 2026-02-19</p>
+			</section>
+
+			<!-- Who is Arastu -->
+			<section>
+				<h3>Meet Arastu</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						Arastu is a particle physicist on the <strong>Belle II experiment</strong> at KEK, Tsukuba, Japan.
+					</p>
+					<p class="fragment fade-in-then-out">
+						His goal: probe the <strong>flavour sector</strong> of the Standard Model — and find cracks in it.
+					</p>
+					<p class="fragment fade-in-then-out">
+						His tools: the SuperKEKB collider, the basf2 framework, and a <strong>very good terminal</strong>.
+					</p>
+				</div>
+			</section>
+
+			<!-- What is Belle II -->
+			<section>
+				<h3>What is Belle II?</h3>
+				<ul>
+					<li class="fragment">An <strong>electron–positron</strong> collider experiment at KEK in Japan</li>
+					<li class="fragment">Runs at the <strong>Υ(4S)</strong> resonance — a factory for B meson pairs</li>
+					<li class="fragment">~<strong>1,000 physicists</strong> from 26 countries</li>
+					<li class="fragment">Physics targets:
+						<ul>
+							<li class="fragment">CP violation in B decays</li>
+							<li class="fragment">Rare decays: B → K<sup>(*)</sup>νν̄, B → τν</li>
+							<li class="fragment">Lepton flavour universality tests: R(D<sup>(*)</sup>)</li>
+							<li class="fragment">Dark sector &amp; dark photon searches</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<!-- The data problem -->
+			<section>
+				<h3>The Scale of the Data</h3>
+				<ul>
+					<li class="fragment">SuperKEKB targets a luminosity of <strong>6 × 10<sup>35</sup> cm<sup>−2</sup>s<sup>−1</sup></strong> — the world record</li>
+					<li class="fragment">Belle II aims to collect <strong>50 ab<sup>−1</sup></strong> of data</li>
+					<li class="fragment">Each collision produces hundreds of detector hits to reconstruct</li>
+					<li class="fragment">Arastu's signal channel may appear in <strong>1 in 10 million</strong> events</li>
+					<li class="fragment">You cannot manage this with folders named <code>analysis_FINAL_v3.root</code></li>
+				</ul>
+			</section>
+
+			<!-- Today's agenda -->
+			<section>
+				<h3>What Arastu Will Learn Today</h3>
+				<ul>
+					<li class="fragment">Practical workshop (AM)
+						<ul>
+							<li class="fragment">The Unix Shell — his gateway to KEK's computing grid</li>
+							<li class="fragment">Git — version control for his basf2 steering files</li>
+							<li class="fragment">GitHub / GitLab — collaborating with the Belle II software team</li>
+						</ul>
+					</li>
+					<li class="fragment">Practical workshop (PM)
+						<ul>
+							<li class="fragment">Tidy data — structuring B decay candidate tables</li>
+							<li class="fragment">Python in VSCode — for analysis and publication plots</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<!-- Unix Shell -->
+			<section>
+				<h3>The Unix Shell — Arastu's Gateway</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						A command-line interpreter that lets you talk directly to the operating system.
+					</p>
+					<p class="fragment fade-in-then-out">
+						KEK's computing farm runs Linux. <strong>There is no GUI.</strong>
+					</p>
+					<p class="fragment fade-in-then-out">
+						To submit his reconstruction jobs, Arastu types:<br><br>
+						<code>bsub -q l -e err.log basf2 reconstruct.py</code>
+					</p>
+					<p class="fragment fade-in-then-out">
+						Without the shell, Arastu cannot run basf2, submit grid jobs, or process a single event at scale.
+					</p>
+				</div>
+			</section>
+
+			<!-- Belle II software -->
+			<section>
+				<h3>Belle II Software Lives on the Command Line</h3>
+				<ul>
+					<li class="fragment"><strong>basf2</strong> — the Belle II Analysis Software Framework (C++ core, Python steering)</li>
+					<li class="fragment"><strong>ROOT</strong> — histogramming, ntuples, and RDataFrame analysis</li>
+					<li class="fragment"><strong>EvtGen / PYTHIA</strong> — Monte Carlo event generators</li>
+					<li class="fragment"><strong>DIRAC / gbasf2</strong> — distributed grid job submission</li>
+					<li class="fragment">All of them: terminal only.</li>
+				</ul>
+			</section>
+
+			<!-- Version control intro -->
+			<section>
+				<h3>What is Version Control?</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						A system that records changes to files over time so you can recall any version later.
+					</p>
+					<p class="fragment fade-in-then-out">
+						Think of it as an unlimited, labelled undo history — for your entire project.
+					</p>
+					<p class="fragment fade-in-then-out">
+						<strong>Git</strong> is the most widely used version control system in the world.
+					</p>
+				</div>
+			</section>
+
+			<!-- Why version control matters for Arastu -->
+			<section>
+				<h3>Why Arastu Needs Version Control</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						Last week, Arastu's B candidate mass window was <code>[5.20, 5.30] GeV/c²</code>.<br>
+						Today it is <code>[5.24, 5.29] GeV/c²</code>.<br>
+						His signal yield changed. <strong>Which result goes in the paper?</strong>
+					</p>
+					<p class="fragment fade-in-then-out">
+						Without version control: commented-out cuts, files like
+						<code>steering_tight_cuts_v7_FINAL2.py</code>
+					</p>
+					<p class="fragment fade-in-then-out">
+						With Git: every change is logged with a message, a timestamp, and an author.
+					</p>
+				</div>
+			</section>
+
+			<!-- Git is critical -->
+			<section>
+				<h3>Is Git Essential for Belle II?</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						The entire <strong>basf2</strong> codebase is managed on GitLab at DESY.
+					</p>
+					<p class="fragment fade-in-then-out">
+						Analysis groups maintain their own Git repositories for steering files, ntuples, and paper code.
+					</p>
+					<p class="fragment fade-in-then-out">
+						Belle II's software review process requires merge requests — which means Git.
+					</p>
+					<p class="fragment fade-in-then-out">
+						<strong>Yes. It is essential.</strong>
+					</p>
+				</div>
+			</section>
+
+			<!-- Tidy data -->
+			<section>
+				<h3>Tidy Data in a B Physics Analysis</h3>
+				<ul>
+					<li class="fragment">Each row = one B meson candidate</li>
+					<li class="fragment">Each column = one variable:
+						<code>Mbc</code>, <code>deltaE</code>, <code>p_cms</code>, <code>isSignal</code>
+					</li>
+					<li class="fragment">Consistent types — no mixed strings and floats in the same column</li>
+					<li class="fragment">Tidy ntuples make Arastu's fits reproducible and shareable with collaborators</li>
+				</ul>
+			</section>
+
+			<!-- Python -->
+			<section>
+				<h3>Python — Arastu's Analysis Language</h3>
+				<div class="r-stack">
+					<p class="fragment fade-in-then-out">
+						<strong>basf2</strong> steering scripts are written in Python — analysis starts here.
+					</p>
+					<p class="fragment fade-in-then-out">
+						<strong>uproot + awkward-array</strong> reads ROOT ntuples without needing C++.
+					</p>
+					<p class="fragment fade-in-then-out">
+						<strong>zfit</strong> performs unbinned maximum-likelihood fits to the Mbc distribution.
+					</p>
+					<p class="fragment fade-in-then-out">
+						<strong>matplotlib / mplhep</strong> produces publication-quality Belle II plots.
+					</p>
+					<p class="fragment fade-in-then-out">
+						VSCode brings linting, Git integration, and Jupyter notebooks — all in one place.
+					</p>
+				</div>
+			</section>
+
+			<!-- What we will do -->
+			<section>
+				<h3>What Arastu Will Master</h3>
+				<ol type="1">
+					<li class="fragment">Navigate KEK's computing farm using the <strong>Unix Shell</strong></li>
+					<li class="fragment">Track every change to his steering files with <strong>Git</strong></li>
+					<li class="fragment">Collaborate with the Belle II software team on <strong>GitLab / GitHub</strong></li>
+					<li class="fragment">Structure his B candidate ntuples as <strong>tidy tables</strong></li>
+					<li class="fragment">Fit, analyse, and plot results in <strong>Python</strong></li>
+				</ol>
+			</section>
+
+			<!-- ═══════════════════════════════════════════════════════
+			     PART 2 – ML / AI WINTER SCHOOL (Hradiš)
+			═══════════════════════════════════════════════════════ -->
+
+			<!-- Divider -->
+			<section class="section-divider" data-background-color="#073642">
+				<h2 style="color:#93a1a1;">AI &amp; Machine Learning</h2>
+				<h3 style="color:#2aa198;">Winter School — Michal Hradiš</h3>
+				<p style="color:#657b83; margin-top:1em;">Brno University of Technology · Faculty of Information Technology</p>
+				<p style="margin-top:1.5em;"><i class="fa-solid fa-brain fa-2x" style="color:#2aa198;"></i></p>
+			</section>
+
+			<!-- AI in everyday life -->
+			<section>
+				<h3>AI in Everyday Life</h3>
+				<div class="cols">
+					<div class="col">
+						<ul style="font-size:0.82em;">
+							<li class="fragment">🔍 Search engines</li>
+							<li class="fragment">📧 Spam filters</li>
+							<li class="fragment">▶️ Recommendations — YouTube / Amazon / Facebook</li>
+							<li class="fragment">🎙️ Speech recognition &amp; synthesis</li>
+							<li class="fragment">💬 Dialogue systems / digital voice assistants</li>
+							<li class="fragment">✏️ Spell checking &amp; translation</li>
+						</ul>
+					</div>
+					<div class="col">
+						<ul style="font-size:0.82em;">
+							<li class="fragment">🚗 Driving assistants / self-driving cars</li>
+							<li class="fragment">👤 Face &amp; fingerprint recognition</li>
+							<li class="fragment">💳 Fraud detection</li>
+							<li class="fragment">🤖 Chat bots, coding assistants</li>
+							<li class="fragment">🕵️ AI agents</li>
+						</ul>
+					</div>
+				</div>
+				<p class="fragment" style="margin-top:0.6em; font-size:0.8em; color:#657b83;">
+					AI is already deeply embedded in the tools we use every day.
+				</p>
+			</section>
+
+			<!-- What is intelligence? -->
+			<section>
+				<h3>What is Intelligence?</h3>
+				<p style="font-size:0.85em; color:#657b83;">Many facets — hard to pin down to a single definition</p>
+				<div style="display:flex; flex-wrap:wrap; gap:0.5em; justify-content:center; margin-top:0.8em;">
+					<span class="fragment tag">Perception</span>
+					<span class="fragment tag blue">Motor control</span>
+					<span class="fragment tag green">Reasoning</span>
+					<span class="fragment tag">Language</span>
+					<span class="fragment tag orange">Prediction</span>
+					<span class="fragment tag red">Emotions</span>
+					<span class="fragment tag blue">Goals</span>
+					<span class="fragment tag green">Learning</span>
+					<span class="fragment tag">Intuition</span>
+					<span class="fragment tag orange">Imagination</span>
+					<span class="fragment tag red">Consciousness</span>
+					<span class="fragment tag blue">Self-awareness</span>
+				</div>
+				<p class="fragment" style="margin-top:1em; font-size:0.78em;">
+					AI systems today excel at <em>some</em> of these — but not all simultaneously.
+				</p>
+			</section>
+
+			<!-- Turing test + Chinese Room -->
+			<section>
+				<h3>Strong AI: Two Famous Thought Experiments</h3>
+				<div class="cols" style="font-size:0.82em; margin-top:0.5em;">
+					<div class="col highlight-box fragment">
+						<strong>🖥️ Turing Test</strong> <span style="font-size:0.75em; color:#657b83;">(Turing, 1950)</span><br>
+						<em>Premise:</em> Humans are intelligent.<br>
+						If a machine is <em>indistinguishable</em> from a human in conversation, it must be intelligent too.
+					</div>
+					<div class="col highlight-box warn fragment">
+						<strong>🏮 Chinese Room</strong> <span style="font-size:0.75em; color:#657b83;">(Searle, 1980)</span><br>
+						A system can produce correct outputs by following symbol-manipulation rules <em>without understanding meaning</em> — a direct challenge to the Turing Test as a sufficient criterion.
+					</div>
+				</div>
+				<p class="fragment" style="margin-top:0.8em; font-size:0.78em; color:#657b83;">
+					These debates remain unresolved — and increasingly relevant as LLMs improve.
+				</p>
+			</section>
+
+			<!-- EU AI Act -->
+			<section>
+				<section>
+					<h3>EU AI Act — Forbidden Uses</h3>
+					<ul style="font-size:0.78em;">
+						<li class="fragment">Subliminal techniques that distort behaviour and may cause <strong>physical or mental harm</strong></li>
+						<li class="fragment">Exploiting vulnerabilities of specific groups (young, elderly, disabled)</li>
+						<li class="fragment"><strong>Social scoring</strong> leading to unjustified detrimental treatment</li>
+						<li class="fragment">Real-time remote <strong>biometric identification</strong> in public spaces for law enforcement</li>
+						<li class="fragment"><strong>Predictive policing</strong> AI systems</li>
+						<li class="fragment">Biometric categorisation using sensitive characteristics</li>
+						<li class="fragment">Emotion recognition in law enforcement, border control, workplaces, or schools</li>
+						<li class="fragment">Indiscriminate scraping of biometric data to build facial-recognition databases</li>
+					</ul>
+				</section>
+				<section>
+					<h3>EU AI Act — High-Risk Applications</h3>
+					<ul style="font-size:0.82em;">
+						<li class="fragment">Biometric identification &amp; categorisation</li>
+						<li class="fragment">Critical infrastructure where AI puts lives at risk</li>
+						<li class="fragment">Educational &amp; vocational settings (access to training)</li>
+						<li class="fragment">Employment &amp; worker management</li>
+						<li class="fragment">Access to essential services (e.g. credit scoring)</li>
+						<li class="fragment">Law enforcement</li>
+						<li class="fragment">Migration, asylum &amp; border control</li>
+						<li class="fragment">Administration of justice &amp; democratic processes</li>
+					</ul>
+					<p class="fragment" style="margin-top:0.6em; font-size:0.75em; color:#657b83;">
+						High-risk does not mean forbidden — it means <em>extra obligations</em>: transparency, human oversight, data governance.
+					</p>
+				</section>
+			</section>
+
+			<!-- Types of machine learning -->
+			<section>
+				<h3>Types of Machine Learning</h3>
+				<div class="cols" style="font-size:0.8em; margin-top:0.4em;">
+					<div class="col highlight-box fragment">
+						<strong>Supervised Learning</strong><br>
+						Examples with <em>correct labels</em> provided by humans.<br>
+						Model learns input → output mapping.<br>
+						<span class="tag green" style="margin-top:4px;">Image classification</span>
+						<span class="tag green">Spam detection</span>
+					</div>
+					<div class="col highlight-box warn fragment">
+						<strong>Unsupervised Learning</strong><br>
+						No labels — find <em>structure in data</em> automatically.<br>
+						<span class="tag red">Clustering</span>
+						<span class="tag red">Anomaly detection</span>
+					</div>
+				</div>
+				<div class="cols" style="font-size:0.8em; margin-top:0.6em;">
+					<div class="col highlight-box info fragment">
+						<strong>Self-Supervised Learning</strong><br>
+						Labels generated <em>automatically</em> from data itself.<br>
+						Foundation of modern LLMs — predict the next token.<br>
+						<span class="tag blue">GPT, BERT, LLaMA</span>
+					</div>
+					<div class="col highlight-box fragment" style="border-color:#cb4b16;">
+						<strong>Reinforcement Learning</strong><br>
+						Agent acts in an environment &amp; receives <em>rewards</em>.<br>
+						<span class="tag orange">Game playing</span>
+						<span class="tag orange">Robot control</span>
+						<span class="tag orange">RLHF for LLMs</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- Supervised learning components -->
+			<section>
+				<h3>Supervised Learning — Key Components</h3>
+				<div class="cols" style="font-size:0.82em;">
+					<div class="col">
+						<ul>
+							<li class="fragment"><strong>Training data</strong><br>
+								Input–output pairs labelled by humans<br>
+								<span style="font-size:0.8em; color:#657b83;">D = {(x₁, y₁), (x₂, y₂), …}</span>
+							</li>
+							<li class="fragment" style="margin-top:0.5em;"><strong>Model with parameters θ</strong><br>
+								<code style="font-size:0.85em;">f(x; θ) = sigmoid(Wx + b)</code>
+							</li>
+							<li class="fragment" style="margin-top:0.5em;"><strong>Loss function</strong><br>
+								Measures how wrong the model is<br>
+								<span style="font-size:0.8em; color:#657b83;">e.g. cross-entropy, MSE</span>
+							</li>
+							<li class="fragment" style="margin-top:0.5em;"><strong>Optimisation algorithm</strong><br>
+								Update θ to minimise the loss<br>
+								<span style="font-size:0.8em; color:#657b83;">Gradient descent / Adam</span>
+							</li>
+						</ul>
+					</div>
+					<div class="col fragment">
+						<div class="mini-code"># Training loop sketch
+for batch in dataloader:
+    x, y = batch
+    pred = model(x)          # forward
+    loss = criterion(pred, y)
+    loss.backward()          # backprop
+    optimizer.step()         # update θ
+    optimizer.zero_grad()</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Neural networks -->
+			<section>
+				<h3>What is a Neural Network?</h3>
+				<p style="font-size:0.85em;">A parameterised function <strong>f(x; θ)</strong> that maps a numerical input vector to a numerical output vector.</p>
+				<div class="cols" style="font-size:0.8em; margin-top:0.5em;">
+					<div class="col fragment">
+						<strong>Core building blocks</strong>
+						<ul style="margin-top:0.3em;">
+							<li><strong>Linear layer:</strong> <code>f(x;W) = Wx</code><br>
+								Matrix <em>W</em> is learned during training</li>
+							<li style="margin-top:0.4em;"><strong>Activation functions</strong> (non-linearity)<br>
+								<code>ReLU(x) = max(x, 0)</code><br>
+								<code>σ(x) = 1 / (1 + e<sup>−x</sup>)</code></li>
+						</ul>
+					</div>
+					<div class="col fragment">
+						<strong>Stacked layers</strong>
+						<div class="mini-code">x₂ = max(W₁·x₁, 0)   # layer 1
+x₃ = max(W₂·x₂, 0)   # layer 2
+x₄ = max(W₃·x₃, 0)   # layer 3
+# depth → more abstract features</div>
+						<p style="font-size:0.78em; margin-top:0.4em; color:#657b83;">
+							"Deep" in Deep Learning = many stacked layers.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Gradient descent -->
+			<section>
+				<h3>Training — Gradient Descent</h3>
+				<p style="font-size:0.85em;">We want parameters θ that minimise the total loss <em>J(D, θ)</em> over the training set.</p>
+				<div class="highlight-box fragment" style="font-size:0.82em; margin:0.6em auto; max-width:70%;">
+					<strong>Update rule:</strong><br>
+					θⱼ ← θⱼ − α · ∂J/∂θⱼ
+					<br><span style="font-size:0.8em; color:#657b83;">where α is the learning rate</span>
+				</div>
+				<ul style="font-size:0.82em;" class="fragment">
+					<li><strong>Forward pass</strong> — compute predictions &amp; loss</li>
+					<li><strong>Backward pass</strong> — backpropagation via chain rule computes all gradients</li>
+					<li><strong>Parameter update</strong> — step in the direction of steepest descent</li>
+				</ul>
+				<p class="fragment" style="font-size:0.78em; margin-top:0.6em; color:#657b83;">
+					<strong>Mini-batch SGD:</strong> gradients are estimated on a small random subset (batch) for computational efficiency — the standard in practice.
+				</p>
+			</section>
+
+			<!-- Train / val / test -->
+			<section>
+				<h3>Estimating Real-World Performance</h3>
+				<div class="cols" style="font-size:0.8em; margin-top:0.4em;">
+					<div class="col highlight-box fragment">
+						<strong>Training set</strong><br>
+						The data the model actually learns from.<br>
+						May include augmented or synthetic samples.
+					</div>
+					<div class="col highlight-box info fragment">
+						<strong>Validation set</strong><br>
+						Used to tune hyperparameters &amp; select architectures.<br>
+						Should be <em>held out</em> from training.
+					</div>
+					<div class="col highlight-box warn fragment">
+						<strong>Test set</strong><br>
+						<em>Touch once</em> — final estimate of real-world performance.<br>
+						Ideally sampled from the true deployment distribution.
+					</div>
+				</div>
+				<p class="fragment" style="font-size:0.78em; margin-top:0.8em; color:#657b83;">
+					⚠️ The training loss and the target metric can diverge — a model can keep improving its loss while its accuracy gets <em>worse</em>.
+				</p>
+			</section>
+
+			<!-- LLM divider -->
+			<section class="section-divider" data-background-color="#002b36">
+				<h2 style="color:#93a1a1;">Large Language Models</h2>
+				<p style="color:#657b83; margin-top:0.5em;">From next-token prediction to reasoning agents</p>
+				<p style="margin-top:1.5em;"><i class="fa-solid fa-comment-dots fa-2x" style="color:#2aa198;"></i></p>
+			</section>
+
+			<!-- Language models — self-supervised -->
+			<section>
+				<h3>Language Models — Self-Supervised Pre-Training</h3>
+				<p style="font-size:0.85em;">The core task: <strong>predict the next token</strong> given all preceding tokens.</p>
+				<div class="mini-code fragment" style="max-width:70%; margin:0.6em auto;">
+"spirit is willing but the flesh is ___"
+→ model assigns probabilities to every token in vocabulary
+→ "weak" gets high probability; "rotten", "red" get lower
+				</div>
+				<ul style="font-size:0.82em; margin-top:0.6em;">
+					<li class="fragment">This is <em>self-supervised</em>: labels (next tokens) come free from raw text</li>
+					<li class="fragment">Trained on trillions of tokens from the internet, books, code, …</li>
+					<li class="fragment">At inference, tokens are sampled <em>autoregressively</em> one at a time</li>
+					<li class="fragment">Temperature controls randomness of sampling</li>
+				</ul>
+			</section>
+
+			<!-- Tokenization -->
+			<section>
+				<h3>Tokenization</h3>
+				<p style="font-size:0.85em;">Raw text → sequence of integer token IDs the model can process.</p>
+				<div class="cols" style="font-size:0.82em; margin-top:0.6em;">
+					<div class="col fragment">
+						<strong>Why not words?</strong>
+						<ul style="margin-top:0.3em;">
+							<li>Passive vocabulary: 50 000–60 000+ words</li>
+							<li>Flexive languages, numbers, named entities, all languages…</li>
+							<li>Vocabulary size would be unmanageable</li>
+						</ul>
+					</div>
+					<div class="col fragment">
+						<strong>Byte-Pair Encoding (BPE)</strong><br>
+						Common character n-grams become tokens:<br>
+						<div class="mini-code" style="margin-top:0.4em;">"Unfriendly"
+→ ["Un", "friend", "ly"]
+→ [12893, 140731, 152]</div>
+						<p style="font-size:0.78em; color:#657b83; margin-top:0.3em;">~100 000 token vocabulary in GPT-4</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Transformer -->
+			<section>
+				<h3>The Transformer Architecture</h3>
+				<p style="font-size:0.82em;">The architecture behind GPT, LLaMA, Claude, Gemini, …</p>
+				<div class="cols" style="font-size:0.8em; margin-top:0.4em;">
+					<div class="col">
+						<ul>
+							<li class="fragment"><strong>Input embedding</strong> — token IDs → dense vectors via learned look-up table</li>
+							<li class="fragment"><strong>Positional encoding</strong> — adds position information (sinusoidal or learned)</li>
+							<li class="fragment"><strong>Multi-Head Attention</strong> — each token attends to <em>all</em> other tokens with learned weights</li>
+							<li class="fragment"><strong>Feed-Forward (MLP)</strong> — applied independently per position</li>
+							<li class="fragment"><strong>N× stacked blocks</strong> — GPT-3 has 96 layers</li>
+							<li class="fragment"><strong>Output</strong> — linear projection to vocabulary + softmax</li>
+						</ul>
+					</div>
+					<div class="col fragment">
+						<div class="mini-code">GPT-3 scale:
+175B parameters
+96 layers
+d_model = 12,288
+MLP matrix: 12k × 49k ≈ 603M
+Max context: 16k tokens
+One batch: 3.2M tokens</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Attention -->
+			<section>
+				<h3>Self-Attention — The Key Idea</h3>
+				<p style="font-size:0.85em;">For each output position, compute a <em>weighted sum</em> of all input representations.</p>
+				<div class="mini-code fragment" style="max-width:80%; margin:0.6em auto;">
+"John went home through very deep snow ."
+   ↑
+To predict what comes after "snow", the model
+can attend strongly to "John" and "home" —
+regardless of distance in the sequence.
+Weight for each position is computed dynamically
+from the content of that position.
+				</div>
+				<p class="fragment" style="font-size:0.8em; margin-top:0.6em; color:#657b83;">
+					This is why Transformers outperform RNNs on long-range dependencies.
+					<strong>Multi-head</strong> attention runs several attention heads in parallel, each capturing different relationship patterns.
+				</p>
+			</section>
+
+			<!-- LLM training pipeline -->
+			<section>
+				<h3>LLM Training Pipeline</h3>
+				<div class="flow fragment" style="margin: 0.8em 0;">
+					<div class="box">Self-supervised<br><small>pre-training</small></div>
+					<span class="arrow">→</span>
+					<div class="box">Base LLM<br><small>internet → recitation</small></div>
+					<span class="arrow">→</span>
+					<div class="box">Supervised<br>Fine-Tuning<br><small>curated Q&amp;A</small></div>
+					<span class="arrow">→</span>
+					<div class="box">RLHF / DPO<br><small>human preferences</small></div>
+					<span class="arrow">→</span>
+					<div class="box" style="background:#d5e8d4; border-color:#82b366;">Aligned<br>Assistant</div>
+				</div>
+				<div class="cols" style="font-size:0.78em; margin-top:0.4em;">
+					<div class="col fragment highlight-box info">
+						<strong>RL Self-Training</strong> (newest)<br>
+						Model tries to solve tasks and gets <em>automatic rewards</em> (e.g., code execution, verifiable answers). Can discover new solution strategies without human labels.
+					</div>
+					<div class="col fragment highlight-box warn">
+						<strong>Model Alignment</strong><br>
+						Ensuring outputs are useful, not harmful, not offensive. Key challenge: how do we specify "beneficial to humanity" formally enough to optimise for it?
+					</div>
+				</div>
+			</section>
+
+			<!-- LLM problems -->
+			<section>
+				<h3>LLM Pitfalls — Hallucination &amp; Stale Knowledge</h3>
+				<div class="cols" style="font-size:0.82em; margin-top:0.4em;">
+					<div class="col fragment highlight-box warn">
+						<strong>Hallucination</strong><br>
+						LLMs generate <em>plausible-sounding</em> text — not necessarily true text.<br>
+						A base LLM asked "Who is the Czech president?" might confidently say Miloš Zeman (outdated) instead of Petr Pavel.
+					</div>
+					<div class="col fragment highlight-box">
+						<strong>Knowledge cutoff</strong><br>
+						Training data has a fixed end date.<br>
+						Model has no knowledge of events after that cutoff without external tools.
+					</div>
+				</div>
+				<p class="fragment" style="font-size:0.8em; margin-top:0.6em; color:#657b83;">
+					Solutions: <span class="tag blue">RAG</span> <span class="tag green">Tool use</span> <span class="tag orange">Grounding</span>
+				</p>
+			</section>
+
+			<!-- RAG -->
+			<section>
+				<h3>Retrieval-Augmented Generation (RAG)</h3>
+				<div class="flow fragment" style="margin: 0.6em 0; font-size:0.85em;">
+					<div class="box">User query</div>
+					<span class="arrow">→</span>
+					<div class="box">Search<br>(vector DB / web)</div>
+					<span class="arrow">→</span>
+					<div class="box">Retrieved<br>documents</div>
+					<span class="arrow">→</span>
+					<div class="box">LLM + context</div>
+					<span class="arrow">→</span>
+					<div class="box" style="background:#d5e8d4; border-color:#82b366;">Grounded<br>answer</div>
+				</div>
+				<ul style="font-size:0.82em;" class="fragment">
+					<li>Retrieved documents are inserted into the LLM's context window</li>
+					<li>LLM answers <em>based on</em> the retrieved content, not just its weights</li>
+					<li>Reduces hallucination; enables up-to-date information</li>
+					<li><strong>Vector embeddings</strong> allow semantic (not just keyword) search</li>
+				</ul>
+			</section>
+
+			<!-- Tools & Agents -->
+			<section>
+				<h3>LLM Tricks &amp; Prompting Strategies</h3>
+				<div class="cols" style="font-size:0.8em; margin-top:0.4em;">
+					<div class="col">
+						<ul>
+							<li class="fragment"><strong>Chain of Thought</strong><br>
+								"Think step-by-step before answering"<br>
+								<span class="tag green">Large accuracy gains on reasoning tasks</span>
+							</li>
+							<li class="fragment" style="margin-top:0.5em;"><strong>Self-Critique / Reflection</strong><br>
+								Ask the model to review and improve its own answer
+							</li>
+							<li class="fragment" style="margin-top:0.5em;"><strong>Subgoal Decomposition</strong><br>
+								Break a hard task into sub-tasks, solve each in turn
+							</li>
+						</ul>
+					</div>
+					<div class="col fragment">
+						<div class="highlight-box info">
+							<strong>Reasoning Models</strong><br>
+							Model runs an internal <em>thinking</em> phase before producing output.<br>
+							<div class="mini-code" style="margin-top:0.4em;">&lt;THINKING&gt;
+Let me choose a topic …
+Draft poem 1.
+Problems: meter off.
+Revised poem 2. Better.
+&lt;/THINKING&gt;
+[Final poem 2 to user]</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Agents -->
+			<section>
+				<h3>AI Agents</h3>
+				<p style="font-size:0.85em;">An LLM augmented with <strong>tools</strong>, <strong>memory</strong>, and an action loop.</p>
+				<div class="cols" style="font-size:0.8em; margin-top:0.5em;">
+					<div class="col fragment">
+						<div class="highlight-box info">
+							<strong>Agent Loop</strong>
+							<ol style="margin-top:0.3em;">
+								<li>Perceive environment / user input</li>
+								<li>Plan next action (LLM reasoning)</li>
+								<li>Execute action (tool call)</li>
+								<li>Observe result → feed back to model</li>
+								<li>Repeat until task complete</li>
+							</ol>
+						</div>
+					</div>
+					<div class="col fragment">
+						<div class="highlight-box">
+							<strong>MCP — Model Context Protocol</strong><br>
+							Anthropic's open standard for:<br>
+							<ul style="margin-top:0.3em;">
+								<li>Discovering available tools</li>
+								<li>Describing their schemas</li>
+								<li>Invoking them with structured JSON</li>
+							</ul>
+							<span class="tag blue" style="margin-top:4px;">Weather APIs</span>
+							<span class="tag green">Code execution</span>
+							<span class="tag orange">Web search</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- LoRA + Quantization -->
+			<section>
+				<h3>Running LLMs Efficiently</h3>
+				<div class="cols" style="font-size:0.8em; margin-top:0.4em;">
+					<div class="col fragment highlight-box">
+						<strong>LoRA — Low-Rank Adaptation</strong><br>
+						Fine-tune a pre-trained LLM by adding small <em>low-rank matrices</em> (A·B) instead of updating all weights:<br>
+						<code style="font-size:0.85em;">W_new = W + A·B</code><br>
+						<span class="tag green">100–1000× fewer trainable parameters</span><br>
+						<span class="tag blue">Enables fine-tuning on a single GPU</span>
+					</div>
+					<div class="col fragment highlight-box warn">
+						<strong>Quantization</strong><br>
+						Store weights in lower precision:<br>
+						Float32 → Float16 → Int8 → Int4<br>
+						<span class="tag red">4-bit: ~4× memory reduction</span><br>
+						<span class="tag orange">QLoRA combines both techniques</span><br>
+						<p style="font-size:0.78em; margin-top:0.4em; color:#657b83;">Allows running 7B+ models on consumer hardware.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Do we have AI? -->
+			<section>
+				<h3>Do We Have AI? Memorisation vs. Generalisation</h3>
+				<div class="cols" style="font-size:0.82em; margin-top:0.4em;">
+					<div class="col fragment">
+						<p>Memory at scale can solve <em>most</em> benchmarks without true understanding.</p>
+						<p style="margin-top:0.5em;">LLMs can ace exams by pattern-matching training data — but struggle with genuinely novel problems.</p>
+					</div>
+					<div class="col fragment highlight-box warn">
+						<strong>ARC Challenge</strong> (arcprize.org)<br>
+						Tasks trivially easy for humans but very hard for LLMs.<br>
+						Requires <em>on-task learning</em>: adapting efficiently to new, unseen problem types.<br>
+						<span class="tag red">LLMs still far behind humans here</span>
+					</div>
+				</div>
+				<p class="fragment" style="font-size:0.78em; margin-top:0.6em; color:#657b83;">
+					The field debates whether scaling alone is sufficient — or whether new architectural ideas are needed.
+				</p>
+			</section>
+
+			<!-- ML for Physics / Belle II connection -->
+			<section>
+				<h3>ML Meets Belle II</h3>
+				<p style="font-size:0.85em;">The techniques from this winter school directly apply to Arastu's work.</p>
+				<div class="cols" style="font-size:0.8em; margin-top:0.5em;">
+					<div class="col">
+						<ul>
+							<li class="fragment"><strong>Supervised learning</strong> — classify signal vs background events
+								<span class="tag green" style="display:block; margin-top:3px;">BDTs, deep neural nets</span>
+							</li>
+							<li class="fragment" style="margin-top:0.5em;"><strong>Self-supervised / generative</strong> — model detector response
+								<span class="tag blue" style="display:block; margin-top:3px;">Fast simulation, GANs</span>
+							</li>
+							<li class="fragment" style="margin-top:0.5em;"><strong>Anomaly detection</strong> — model-independent new physics searches</li>
+						</ul>
+					</div>
+					<div class="col fragment">
+						<div class="highlight-box info">
+							<strong>Graph Neural Networks</strong><br>
+							Particles as nodes, interactions as edges — a natural fit for reconstructing decay chains from detector hits.
+						</div>
+						<p style="font-size:0.78em; margin-top:0.5em; color:#657b83;">
+							Belle II analysis groups already use PyTorch &amp; scikit-learn alongside basf2.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Closing -->
+			<section>
+				<h2>Let's find some new physics.</h2>
+				<p style="margin-top: 0.5em;">B → K<sup>(*)</sup>νν̄ won't measure itself.</p>
+				<p class="fragment" style="margin-top: 0.8em; font-size:0.85em; color:#657b83;">
+					And now Arastu knows the ML tools to help it along the way.
+				</p>
+				<p class="fragment" style="margin-top: 1em;"><i class="fa-solid fa-atom fa-spin"></i> &nbsp; <i class="fa-solid fa-brain" style="color:#2aa198;"></i></p>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/search/search.min.js"></script>
+	<script>
+		Reveal.initialize({
+			hash: true,
+			controls: true,
+			controlsLayout: 'bottom-right',
+			controlsBackArrows: 'faded',
+			progress: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch]
+		});
+	</script>
+</body>
+
+</html>
